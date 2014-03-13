@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Castlie</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Clicker+Script' rel='stylesheet' type='text/css'>
+
+    <style>
+      html, body {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      body {
+        background: #fff
+      }
+
+      #wrap {
+        -webkit-transition: width 1.4s .8s ease-in-out;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        margin: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        overflow: hidden;
+        background: -webkit-linear-gradient(top left, #723362 0%, #9D223C 100%);
+      }
+
+      #castlie {
+        width: 440px;
+        height: 155px;
+        position: absolute;
+        margin-left: -270px;
+        left: 50%;
+        bottom: 0;
+        z-index: 100;
+      }
+
+      @media (min-width: 800px) {
+        #castlie {
+          -webkit-transform: scale(2);
+          -webkit-transform-origin: 62% 100%;
+        }
+      }
+
+      .tower {
+        position: absolute;
+        left: 35px;
+        height: 195px;
+        width: 140px;
+        top: -40px;
+      }
+
+      .tower.tower2 {
+        left: 275px;
+      }
+
+      .littleTower {
+        position: absolute;
+        left: -300px;
+        height: 195px;
+        width: 140px;
+        top: -40px;
+        z-index: 200;
+      }
+
+      .littleTower.littleTower2 {
+        left: 5px;
+        z-index: 20000;
+      }
+
+      #block1{
+        width: 30px;
+        height: 55px;
+        background: #995a50;
+        background:-webkit-gradient(linear, left top, right top, color-stop(0%,#FFF), color-stop(50%,#FDFDFD), color-stop(51%,#DCCEE2), color-stop(100%,#ECD6F5));
+        position: absolute;
+        top:138px;
+        left: 100px;
+        border-top: 2px solid #DA3D9B;
+      }
+
+      #block2 {
+        width: 30px;
+        height: 26px;
+        background: #995a50;
+        background:-webkit-gradient(linear, left top, right top, color-stop(0%,#FFF), color-stop(50%,#FDFDFD), color-stop(51%,#DCCEE2), color-stop(100%,#ECD6F5));
+        position: absolute;
+        top:110px;
+        left: 100px;
+        border-top: 2px solid #DA3D9B;
+      }
+
+      #block3Right {
+        border-bottom: 11px solid #DCCEE2;
+        border-left: 3px solid transparent;
+        height: 0;
+        width: 15px;
+        -webkit-transform: rotate(180deg);
+        position: absolute;
+        top: 99px;
+        left: 115px;
+      }
+
+      #block3Left {
+        border-bottom: 11px solid #FFF;
+        border-Right: 3px solid transparent;
+        height: 0;
+        width: 15px;
+        -webkit-transform: rotate(180deg);
+        position: absolute;
+        top: 99px;
+        left: 97px;
+      }
+
+      #block4 {
+        width: 36px;
+        height: 6px;
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#FFF), color-stop(50%,#FDFDFD), color-stop(51%,#DCCEE2), color-stop(100%,#ECD6F5));
+        position: absolute;
+        left: 97px;
+        top: 90px;
+        border-top: 3px solid #DA3D9B;
+      }
+
+      #block5 {
+        width: 30px;
+        height: 12px;
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#FFF), color-stop(50%,#FDFDFD), color-stop(51%,#DCCEE2), color-stop(100%,#ECD6F5));
+        position: absolute;
+        left:100px;
+        top:78px;
+      }
+
+      #block6Right {
+        border-bottom: 19px solid #DA3D9B;
+        border-left: 10px solid transparent;
+        height: 0;
+        width: 5px;
+        position: absolute;
+        left: 100px;
+        top: 59px;
+      }
+
+      #block6Left {
+        border-bottom: 19px solid #B12579;
+        border-right: 10px solid transparent;
+        height: 0;
+        width: 5px;
+        position: absolute;
+        left: 115px;
+        top: 59px;
+      }
+
+      #block7 {
+        width: 8px;
+        height: 6px;
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#995a50), color-stop(50%,#995a50), color-stop(51%,#824b44), color-stop(100%,#824b44));
+        position: absolute;
+        left: 111px;
+        top: 53px;
+      }
+
+      #block8Right {
+        border-bottom: 13px solid #DA3D9B;
+        border-left: 3px solid transparent;
+        height: 0;
+        width: 1px;
+        position: absolute;
+        left: 111px;
+        top: 40px;
+      }
+
+      #block8Left {
+        border-bottom: 13px solid #B12579;
+        border-right: 3px solid transparent;
+        height: 0;
+        width: 1px;
+        position: absolute;
+        left: 115px;
+        top: 40px;
+      }
+
+      #star {
+        color: #FDC125;
+        position: absolute;
+        left: 109px;
+        top: 29px;
+        font-size: 12px
+      }
+
+      #littleTower {
+        width: 35px;
+        height: 35px;
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#FFF), color-stop(50%,#FDFDFD), color-stop(51%,#DCCEE2), color-stop(100%,#ECD6F5));
+        position: absolute;
+        left: 400px;
+        top: 160px
+      }
+
+      #littleTowerBlock1 {
+        width: 30px;
+        height: 8px;
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#FFF), color-stop(50%,#FDFDFD), color-stop(51%,#DCCEE2), color-stop(100%,#ECD6F5));
+        position: absolute;
+        left: 402px;
+        top: 150px;
+        border-bottom: 2px solid #DA3D9B;
+      }
+
+      #littleTowerBlock2Right {
+        border-bottom: 19px solid #B12579;
+        border-right: 10px solid transparent;
+        height: 0;
+        width: 5px;
+        position: absolute;
+        left: 417px;
+        top: 131px;
+      }
+
+      #littleTowerBlock2Left {
+        border-bottom: 19px solid #DA3D9B;
+        border-left: 10px solid transparent;
+        height: 0;
+        width: 5px;
+        position: absolute;
+        left: 402px;
+        top: 131px;
+      }
+
+      #littleTowerBlock3 {
+        width: 10px;
+        height: 4px;
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#FFF), color-stop(50%,#FDFDFD), color-stop(51%,#DCCEE2), color-stop(100%,#ECD6F5));
+        position: absolute;
+        left: 412px;
+        top: 125px;
+        border-top: 2px solid #DA3D9B;
+      }
+
+      #littleTowerBlock4Right {
+        border-bottom: 13px solid #B12579;
+        border-right: 5px solid transparent;
+        height: 0;
+        width: 0px;
+        position: absolute;
+        left: 417px;
+        top: 112px;
+      }
+
+      #littleTowerBlock4Left {
+        border-bottom: 13px solid #DA3D9B;
+        border-left: 5px solid transparent;
+        height: 0;
+        width: 0px;
+        position: absolute;
+        left: 412px;
+        top: 112px;
+      }
+
+      #castle {
+        width: 210px;
+        height: 40px;
+        background-color: #fff;
+        position: absolute;
+        left: 165px;
+        top: 115px;
+      }
+
+      #castleTop {
+        border-bottom: 10px solid #DA3D9B;
+        border-left: 35px solid transparent;
+        border-right: 35px solid transparent;
+        height: 0;
+        width: 141px;
+        position: absolute;
+        left: 164px;
+        top: 105px;
+      }
+
+      #castleTop1 {
+        width: 55px;
+        height: 7px;
+        background-color: #fff;
+        position: absolute;
+        left: 242px;
+        top: 98px;
+      }
+
+      #castleTop2 {
+        width: 49px;
+        height: 48px;
+        background: #DA3D9B;
+        -webkit-border-radius: 100px / 50px;
+        position: absolute;
+        left: 245px;
+        top: 87px;
+        z-index: -100;
+      }
+
+      #castleTop3 {
+        width: 6px;
+        height: 6px;
+        background-color: #DA3D9B;
+        position: absolute;
+        left: 266px;
+        top: 82px;
+      }
+
+      #castleTop4 {
+        width: 2px;
+        height: 30px;
+        background-color: #fff;
+        position: absolute;
+        left: 268px;
+        top: 52px;
+      }
+
+      #castleWindowsTop ul {
+        list-style: none;
+        position: absolute;
+        left: 129px;
+        top: 108px
+      }
+
+      #castleWindowsTop li {
+        width: 4px;
+        height: 9px;
+        background: #723362;
+        border-radius: 50px 50px 0 0;
+        float: left;
+        margin-left: 5px;
+      }
+
+      #castleWindowsBottom ul {
+        list-style: none;
+        position: absolute;
+        left: 129px;
+        top: 122px;
+      }
+
+      #castleWindowsBottom li {
+        width: 4px;
+        height: 9px;
+        background: #723362;
+        border-radius: 50px 50px 0 0;
+        float: left;
+        margin-left: 5px;
+      }
+
+      .cloud {
+        width: 70px;
+        height: 30px;
+        position: absolute;
+        left: 160px;
+        top: 10px;
+        z-index:-200;
+        overflow: hidden;
+        animation: cloud 32s linear infinite;
+        -webkit-animation: cloud 32s linear infinite;
+      }
+
+      .cloud .ball {
+        background-color: #fff;
+        position: absolute;
+        z-index: 400;
+      }
+
+      .cloud .ball:first-of-type {
+        width: 15px;
+        height: 15px;
+        border-radius: 50px;
+        bottom: 0px;
+      }
+
+      .cloud .ball:nth-of-type(2) {
+        width: 18px;
+        height: 18px;
+        border-radius: 50px;
+        left: 12px;
+        bottom: 6px;
+      }
+
+      .cloud .ball:nth-of-type(3) {
+        width: 17px;
+        height: 17px;
+        border-radius: 50px;
+        left: 28px;
+        top: 3px;
+      }
+
+      .cloud .ball:nth-of-type(4) {
+        width: 15px;
+        height: 15px;
+        border-radius: 50px;
+        left: 43px;
+        top: 7px;
+      }
+
+      .cloud .ball:nth-of-type(5) {
+        width: 15px;
+        height: 15px;
+        border-radius: 50px;
+        left: 53px;
+        top: 15px;
+      }
+
+      .cloud .ball:nth-of-type(6) {
+        width: 53px;
+        height: 13px;
+        top: 17px;
+        left: 8px;
+      }
+
+      .cloud1 {
+        width: 49px;
+        height: 25px;
+        position: absolute;
+        left: 380px;
+        top: 52px;
+        overflow:hidden;
+        animation: cloud 24s linear infinite;
+        -webkit-animation: cloud 24s linear infinite;
+      }
+
+      .cloud1 .ball1 {
+        background-color: #fff;
+        position: absolute;
+        z-index: 400;
+      }
+
+      .cloud1 .ball1:first-of-type {
+        width: 13px;
+        height: 13px;
+        border-radius: 50px;
+        bottom: 0px;
+      }
+
+      .cloud1 .ball1:nth-of-type(2) {
+        width: 14px;
+        height: 17px;
+        border-radius: 50px;
+        top: 3px;
+        left: 10px;
+      }
+
+      .cloud1 .ball1:nth-of-type(3) {
+        width: 14px;
+        height: 14px;
+        border-radius: 50px;
+        top: 5px;
+        left: 22px;
+      }
+
+      .cloud1 .ball1:nth-of-type(4) {
+        width: 14px;
+        height: 14px;
+        border-radius: 50px;
+        top: 11px;
+        left: 34px;
+      }
+
+      .cloud1 .ball1:nth-of-type(5) {
+        width: 38px;
+        height: 10px;
+        position: absolute;
+        top: 15px;
+        left: 5px;
+      }
+
+      @-webkit-keyframes cloud {
+        0% {
+          opacity: 0;
+          -webkit-transform: translate3d(-750px, 0, 0);
+        }
+        33% {
+          opacity: 1;
+          -webkit-transform: translate3d(-250px, 0, 0);
+        }
+        66% {
+          opacity: 1;
+          -webkit-transform: translate3d(250px, 0, 0);
+        }
+        100% {
+          opacity: 0;
+          -webkit-transform: translate3d(750px, 0, 0);
+        }
+      }
+
+      /* Header */
+
+      h1 {
+        color: rgba(255, 255, 255, 0.4);
+        display: block;
+        font-size: 20px;
+        z-index: 400;
+        position: absolute;
+        height: 190px;
+        margin: auto;
+        top: 0;
+        left: 50%;
+        margin-left: -250px;
+        right: 0;
+        bottom: 270px;
+        width: 500px;
+        text-align: center;
+      }
+      h1 span {
+        display: block;
+        letter-spacing: .08em;
+        line-height: 1;
+        font-family: "Lato", "Helvetica Neue", sans-serif;
+        font-weight: 200;
+      }
+      h1 span.line1 {
+        font-size: 1.6em;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: .8;
+        letter-spacing: .2em;
+        font-style: italic;
+        color: #F9EAFF;
+      }
+      h1 span.line4 {
+        font-size: 1.5em;
+        font-weight: 400;
+        text-transform: uppercase;
+        line-height: .8;
+        letter-spacing: .16em;
+        margin: 10px 0 31px;
+        color: #FFA5ED;
+      }
+      h1 span.line5 {
+        font-size: 9em;
+        line-height: .8;
+        color: #FFA825;
+        font-family: "Clicker Script";
+        margin-right: .14em;
+        letter-spacing: normal;
+      }
+      h1 span.line6 {
+        font-size: .66em;
+        color: #B95BA7;
+        font-style: italic;
+        margin-top: -1px;
+      }
+      h1 span {
+        opacity: 0;
+        -webkit-transition: all 1s;
+      }
+      .loaded h1 span {
+        opacity: 1;
+      }
+      h1 span.line1 { -webkit-transition-delay: 7s; }
+      h1 span.line4 { -webkit-transition-delay: 3s; }
+      h1 span.line5 { -webkit-transition-delay: 4s; }
+
+      #castlie {
+        opacity: 0;
+        -webkit-transition: all 2s;
+      }
+      .loaded #castlie {
+        opacity: 1;
+      }
+      #castlie { -webkit-transition-delay: 6s; }
+
+      /* Crescendo */
+
+      .crescendo {
+        position: fixed;
+        background: -webkit-linear-gradient(#00b8ff, #85ff00);
+        top: 0;
+        left: 0;
+        z-index: 50;
+        height: 100%;
+        width: 0%;
+        transition: width 583ms linear, -webkit-transform 1166ms;
+      }
+
+      .crescendo.fallen {
+        width: 100%;
+        -webkit-transform: translate3d(0, 200%, 0) rotateZ(90deg);
+      }
+
+      /* Dancer */
+
+      body.dancer h1 span,
+      body.dancer #castlie {
+        -webkit-transition: none;
+      }
+
+      body.star-flicker #star {
+        color: #fff;
+      }
+      #castlie > * {
+        -webkit-transform: translateZ(0);
+      }
+      body.castle-flicker #castlie > * {
+        -webkit-filter: invert(1);
+      }
+      body.background-flicker #wrap {
+        background: #000;
+      }
+      h1 {
+        -webkit-transform: translateZ(0);
+      }
+      h1.back-and-forth {
+        -webkit-transform: translate3d(-60px, 0, 0);
+        transition: -webkit-transform 1166ms;
+      }
+      h1.forth {
+        -webkit-transform: translate3d(60px, 0, 0);
+      }
+      #castlie.back-and-forth {
+          -webkit-transform: skew(7deg);
+      }
+      #castlie.back-and-forth.forth {
+          -webkit-transform: skew(-7deg);
+      }
+      @media (min-width: 800px) {
+        #castlie.back-and-forth {
+            -webkit-transform: scale(2) skew(7deg);
+        }
+        #castlie.back-and-forth.forth {
+            -webkit-transform: scale(2) skew(-7deg);
+        }
+      }
+      h1 > span {
+        -webkit-transform: translateZ(0);
+      }
+      div.text-shadowed {
+        text-shadow: 0 0 40px #fff, 0 0 40px #fff, 0 0 130px red, 0 0 130px red;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        -webkit-transform: translateZ(0);
+      }
+      body.words-flicker div.text-shadowed {
+        opacity: 1;
+      }
+      body.words-flicker h1 > span {
+        opacity: 0;
+      }
+      body.words-flicker h1 span {
+        color: pink;
+      }
+      body.words-flicker.background-flicker h1 span {
+        color: cyan;
+      }
+    </style>
+    </head>
+    <body>
+      <div id="wrap">
+        <div class="crescendo"></div>
+        <h1>
+          <span class="line4">I present to you</span>
+          <span class="line5">Castlie</span>
+          <span class="line1">Smash the funk</span>
+          <div class="text-shadowed">
+            <span class="line4">I present to you</span>
+            <span class="line5">Castlie</span>
+            <span class="line1">Smash the funk</span>
+          </div>
+        </h1>
+        <div id="castlie">
+          <div class="tower">
+            <div id="block1"></div>
+            <div id="block2"></div>
+            <div id="block3Right"></div>
+            <div id="block3Left"></div>
+            <div id="block4"></div>
+            <div id="block5"></div>
+            <div id="block6Right"></div>
+            <div id="block6Left"></div>
+            <div id="block7"></div>
+            <div id="block8Right"></div>
+            <div id="block8Left"></div>
+            <div id="star">★</div>
+          </div>
+          <div class="tower tower2">
+            <div id="block1"></div>
+            <div id="block2"></div>
+            <div id="block3Right"></div>
+            <div id="block3Left"></div>
+            <div id="block4"></div>
+            <div id="block5"></div>
+            <div id="block6Right"></div>
+            <div id="block6Left"></div>
+            <div id="block7"></div>
+            <div id="block8Right"></div>
+            <div id="block8Left"></div>
+            <div id="star">★</div>
+          </div>
+          <div class="littleTower">
+            <div id="littleTower"></div>
+            <div id="littleTowerBlock1"></div>
+            <div id="littleTowerBlock2Right"></div>
+            <div id="littleTowerBlock2Left"></div>
+            <div id="littleTowerBlock3"></div>
+            <div id="littleTowerBlock4Right"></div>
+            <div id="littleTowerBlock4Left"></div>
+          </div>
+          <div class="littleTower littleTower2">
+            <div id="littleTower"></div>
+            <div id="littleTowerBlock1"></div>
+            <div id="littleTowerBlock2Right"></div>
+            <div id="littleTowerBlock2Left"></div>
+            <div id="littleTowerBlock3"></div>
+            <div id="littleTowerBlock4Right"></div>
+            <div id="littleTowerBlock4Left"></div>
+          </div>
+          <div class="cloud">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+          </div>
+          <div class="cloud1">
+            <div class="ball1"></div>
+            <div class="ball1"></div>
+            <div class="ball1"></div>
+            <div class="ball1"></div>
+            <div class="ball1"></div>
+          </div>
+          <div id="castle"></div>
+          <div id="castleTop"></div>
+          <div id="castleTop1"></div>
+          <div id="castleTop2"></div>
+          <div id="castleTop3"></div>
+          <div id="castleTop4"></div>
+          <div id="castleWindowsTop">
+            <ul>
+              <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+            </ul>
+          </div>
+          <div id="castleWindowsBottom">
+            <ul>
+              <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="jquery.js"></script>
+    <script src="dancer.js"></script>
+    <script>
+      var $body = $('body');
+
+      var $crescendo = $('.crescendo');
+
+      var dancer = new Dancer();
+
+      var currentBeatNumber = 2;
+      var halfBeatDurationMillis = (60 / 103) * 1000;
+
+      // currentBeatNumber += 120;
+
+      dancer
+        .onceAt(0, function(){
+          setInterval(function(){
+            count();
+            setTimeout(function(){
+              count();
+            }, halfBeatDurationMillis * (1 / 2));
+          }, halfBeatDurationMillis);
+
+          var count = function(num) {
+
+            var str = currentBeatNumber + ' ';
+
+            if (currentBeatNumber === 8) {
+              $body.toggleClass('castle-flicker');
+              setTimeout(function(){
+                $body.toggleClass('castle-flicker');
+              })
+            }
+
+            if (currentBeatNumber === 64) {
+              $body.toggleClass('background-flicker');
+            }
+
+            if (currentBeatNumber % 32 === 0) {
+              str += 'MEASUREEEEGROUP -----------------------'
+            }
+
+            if (currentBeatNumber % 4 === 0) {
+
+              if (currentBeatNumber < 64) {
+                $body.toggleClass('star-flicker');
+              } else {
+                $body.toggleClass('castle-flicker');
+                $body.toggleClass('background-flicker');
+              }
+              str += ' KICK'
+
+
+            } else if (currentBeatNumber % 4 === 2) {
+
+              str += ' SNARE ++===='
+              if (currentBeatNumber < 64) {
+                $body.toggleClass('star-flicker');
+              } else {
+                $body.toggleClass('castle-flicker');
+                $body.toggleClass('background-flicker');
+              }
+
+
+            } else if (currentBeatNumber % 4 === 1) {
+
+              str += ' hat'
+
+
+            } else if (currentBeatNumber % 4 === 3) {
+
+              str += ' hat'
+            }
+
+            if (currentBeatNumber >= 112 && currentBeatNumber >= 128) {
+              if (currentBeatNumber % 2 === 1) {
+                $body.toggleClass('background-flicker');
+              }
+            }
+
+            if (currentBeatNumber >= 128) {
+              $body.toggleClass('words-flicker');
+            }
+
+
+            if (currentBeatNumber >= 64 && currentBeatNumber <= 128) {
+              $crescendo.css('width', Math.min(100, 100 * (currentBeatNumber - 64) / 64) + '%');
+            }
+
+            if (currentBeatNumber === 128) {
+              $crescendo.addClass('fallen');
+            }
+
+            if (currentBeatNumber === 128) {
+              $('h1').addClass('back-and-forth');
+              $('#castlie').addClass('back-and-forth');
+            }
+
+            if (currentBeatNumber >= 128 && currentBeatNumber % 2 === 1) {
+              $('h1').toggleClass('forth');
+            }
+
+            if (currentBeatNumber >= 128 && currentBeatNumber % 4 === 0) {
+              $('#castlie').toggleClass('forth');
+            }
+
+            currentBeatNumber += 1;
+          };
+        })
+        .onceAt(8, function(){
+          $body.addClass('dancer');
+        })
+        .load({ src: 'smash-the-funk.mp3' })
+        .bind('loaded', function(){
+          dancer.play();
+
+          setTimeout(function(){
+            document.body.className += ' loaded'
+          }, 0);
+        })
+      ;
+
+      // .onceAt( 10, function() {
+      //   // Let's set up some things once at 10 seconds
+      // }).between( 10, 60, function() {
+      //   // After 10s, let's do something on every frame for the first minute
+      // }).after( 60, function() {
+      //   // After 60s, let's get this real and map a frequency to an object's y position
+      //   // Note that the instance of dancer is bound to "this"
+      //   // object.y = this.getFrequency( 400 );
+      // }).onceAt( 120, function() {
+      //   // After 120s, we'll turn the kick off as another object's y position is still being mapped from the previous "after" method
+      //   kick.off();
+      // })
+    </script>
+  </body>
+</html>
