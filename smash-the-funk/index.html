@@ -587,7 +587,15 @@
         -webkit-transform: translate3d(0, 200%, 0) rotateZ(90deg);
       }
 
+      body.fix-castle-background #castle {
+        background: #ffffef !important;
+      }
+
       /* Dancer */
+
+      body.dancer #castle {
+        background: #feffff !important;
+      }
 
       body.dancer h1 span,
       body.dancer #castlie {
@@ -777,6 +785,10 @@
           var count = function(num) {
 
             var str = currentBeatNumber + ' ';
+
+            if (currentBeatNumber < 32) {
+              $body.toggleClass('fix-castle-background');
+            }
 
             if (currentBeatNumber === 8) {
               $body.toggleClass('castle-flicker');
